@@ -83,14 +83,16 @@
 
           <pre class="prettyprint">
     IOC({
-      dependencies: {
-        default: {
-          sync: [
+      context: {
+        dependencies: {
+          default: {
+            sync: [
+                ...
+            ],
+            async: [
               ...
-          ],
-          async: [
-            ...
-          ]
+            ]
+          }
         }
       }
     });</pre>
@@ -139,6 +141,7 @@
             <code>namespace</code> specifies the function to run to obtain the partial configuration.
             <code>url</code> is an optional setting that allows JIOC to fetch the source for <code>App.Sample</code>
             if it is not already defined (loaded from the dependencies for example).
+            Note that only the content of <code>context</code> will be used.
           </p>
 
           <h3>Annotations</h3>
