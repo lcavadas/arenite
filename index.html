@@ -14,17 +14,17 @@
   <![endif]-->
   <script src="javascripts/prettify.js"></script>
 
-  <title>Jioc by lcavadas</title>
+  <title>Arenite by lcavadas</title>
 </head>
 
 <body onload="prettyPrint()">
 <div>
   <header>
     <div class="inner">
-      <h1>JIOC</h1>
+      <h1>Arenite</h1>
 
       <h2>Inversion of Control / Dependency Injection Library</h2>
-      <a href="https://github.com/lcavadas/jioc" class="button">
+      <a href="https://github.com/lcavadas/jarenite" class="button">
         <small>View project on</small>
         GitHub</a>
     </div>
@@ -34,7 +34,7 @@
       <article id="main-content">
 
         <section id="why">
-          <h2>Why JIOC?</h2>
+          <h2>Why Arenite?</h2>
 
           <!--<p>There were a few reasons for the creation of this library. The main reasons were:</p>-->
           ...
@@ -61,14 +61,14 @@
           <h2>Configuration</h2>
 
           <p>
-            You should require only one script tag on your html since JIOC can take care of loading your javascript.
-            This is advisable as there is a mechanism within JIOC to run in different flavors with different files
+            You should require only one script tag on your html since Arenite can take care of loading your javascript.
+            This is advisable as there is a mechanism within Arenite to run in different flavors with different files
           </p>
 
           <p>(ex: <b>debug</b> with all source files and <b>prod</b> with minified versions)</p>
 
           <p>
-            There are two ways to configure you application using JIOC.
+            There are two ways to configure you application using Arenite.
             You can use object configuration or annotation-based configuration.
             You can use both at the same time is such is desired.
           </p>
@@ -82,7 +82,7 @@
           <p>A minimal initial object based configuration is required to specify the resources.</p>
 
           <pre class="prettyprint">
-    IOC({
+    Arenite({
       context: {
         dependencies: {
           default: {
@@ -127,7 +127,7 @@
             this can then be specified in your main configuration (usually in index.html).
           </p>
 <pre class="prettyprint">
-    IOC({
+    Arenite({
       imports: [
         {
           url: '.../sample.js',
@@ -139,7 +139,7 @@
 
           <p>
             <code>namespace</code> specifies the function to run to obtain the partial configuration.
-            <code>url</code> is an optional setting that allows JIOC to fetch the source for <code>App.Sample</code>
+            <code>url</code> is an optional setting that allows Arenite to fetch the source for <code>App.Sample</code>
             if it is not already defined (loaded from the dependencies for example).
             Note that only the content of <code>context</code> will be used.
           </p>
@@ -151,7 +151,7 @@
         <section id="docs">
           <h2>Documentation</h2>
 
-          <p>For detailed documentation on each of services and extensions go <a href="docs/ioc.core.html">here</a></p>
+          <p>For detailed documentation on each of services and extensions go <a href="docs/arenite.core.html">here</a></p>
         </section>
 
         <section id="reference">
@@ -169,10 +169,10 @@
             </thead>
             <tbody>
             <tr>
-              <td>exposeIoc</td>
+              <td>expose</td>
               <td>true | false</td>
               <td>false</td>
-              <td>Specifies if the JIOC instance should be exposed in the window object</td>
+              <td>Specifies if the Arenite instance should be exposed in the window object</td>
             </tr>
             <tr>
               <td>imports</td>
@@ -211,7 +211,7 @@
             <td>namespace</td>
             <td>function identifier string</td>
             <td>undefined</td>
-            <td>defines a function that must return a JIOC configuration object</td>
+            <td>defines a function that must return a Arenite configuration object</td>
           </tr>
           </tbody>
         </table>
@@ -298,7 +298,7 @@
             <td>extension</td>
             <td>true | false</td>
             <td>false</td>
-            <td>defines if the instance should extend the ioc object with the return value</td>
+            <td>defines if the instance should extend the arenite object with the return value</td>
           </tr>
           <tr>
             <td>factory</td>
@@ -419,16 +419,16 @@
       </article>
 
       <aside id="sidebar">
-        <a href="https://github.com/lcavadas/jioc/zipball/master" class="button">
+        <a href="https://github.com/lcavadas/jarenite/zipball/master" class="button">
           <small>Download</small>
           .zip file
         </a>
-        <a href="https://github.com/lcavadas/jioc/tarball/master" class="button">
+        <a href="https://github.com/lcavadas/jarenite/tarball/master" class="button">
           <small>Download</small>
           .tar.gz file
         </a>
 
-        <p class="repo-owner"><a href="https://github.com/lcavadas/jioc"></a>maintained by <a
+        <p class="repo-owner"><a href="https://github.com/lcavadas/jarenite"></a>maintained by <a
             href="https://github.com/lcavadas">lcavadas</a>.</p>
 
         <p>This page was created using the Architect theme by

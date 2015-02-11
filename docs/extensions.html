@@ -40,38 +40,38 @@
                 </a>
               
                 
-                <a class="source" href="ioc.test.html">
-                  ioc.test.js
+                <a class="source" href="arenite.test.html">
+                  arenite.test.js
                 </a>
               
                 
-                <a class="source" href="ioc.async.html">
-                  ioc.async.js
+                <a class="source" href="arenite.async.html">
+                  arenite.async.js
                 </a>
               
                 
-                <a class="source" href="ioc.core.html">
-                  ioc.core.js
+                <a class="source" href="arenite.core.html">
+                  arenite.core.js
                 </a>
               
                 
-                <a class="source" href="ioc.di.html">
-                  ioc.di.js
+                <a class="source" href="arenite.di.html">
+                  arenite.di.js
                 </a>
               
                 
-                <a class="source" href="ioc.loader.html">
-                  ioc.loader.js
+                <a class="source" href="arenite.loader.html">
+                  arenite.loader.js
                 </a>
               
                 
-                <a class="source" href="ioc.object.html">
-                  ioc.object.js
+                <a class="source" href="arenite.object.html">
+                  arenite.object.js
                 </a>
               
                 
-                <a class="source" href="ioc.url.html">
-                  ioc.url.js
+                <a class="source" href="arenite.url.html">
+                  arenite.url.js
                 </a>
               
             </div>
@@ -98,7 +98,7 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global IOC:true*/</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Arenite:true*/</span></pre></div></div>
             
         </li>
         
@@ -110,11 +110,11 @@
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
               <p>This is a sample configuration that adds the existing extensions to the sandbox.
-The sandbox object is auto-registered as <code>ioc</code> and can be referenced for any other instance.</p>
+The sandbox object is auto-registered as <code>arenite</code> and can be referenced for any other instance.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>IOC.Extensions = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+            <div class="content"><div class='highlight'><pre>Arenite.Extensions = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
   <span class="hljs-keyword">return</span> {
     context: {
       dependencies: {
@@ -144,15 +144,15 @@ The sandbox object is auto-registered as <code>ioc</code> and can be referenced 
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <h3 id="ioc-bus">IOC.Bus</h3>
+              <h3 id="arenite-bus">Arenite.Bus</h3>
 <p>Event bus extension.</p>
-<p>Described in <a href="extensions/bus/bus.html">IOC.Bus</a>.</p>
+<p>Described in <a href="extensions/bus/bus.html">Arenite.Bus</a>.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>        bus: {
           extension: <span class="hljs-literal">true</span>,
-          namespace: <span class="hljs-string">'IOC.Bus'</span>
+          namespace: <span class="hljs-string">'Arenite.Bus'</span>
         },</pre></div></div>
             
         </li>
@@ -164,16 +164,16 @@ The sandbox object is auto-registered as <code>ioc</code> and can be referenced 
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <h3 id="ioc-templates">IOC.Templates</h3>
+              <h3 id="arenite-templates">Arenite.Templates</h3>
 <p>HTML templating extension using <a href="http://olado.github.io/doT/index.html">doT.js</a>.</p>
-<p>Described in <a href="extensions/template/dot.html">IOC.Templates</a></p>
+<p>Described in <a href="extensions/template/dot.html">Arenite.Templates</a></p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>        templates: {
           extension: <span class="hljs-literal">true</span>,
-          namespace: <span class="hljs-string">'IOC.Templates'</span>,
-          args: [{ref: <span class="hljs-string">'ioc'</span>}]
+          namespace: <span class="hljs-string">'Arenite.Templates'</span>,
+          args: [{ref: <span class="hljs-string">'arenite'</span>}]
         },</pre></div></div>
             
         </li>
@@ -185,17 +185,17 @@ The sandbox object is auto-registered as <code>ioc</code> and can be referenced 
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <h3 id="ioc-storage">IOC.Storage</h3>
+              <h3 id="arenite-storage">Arenite.Storage</h3>
 <p>Local storage extension using <a href="https://github.com/lcavadas/Storage.js">Storage.js</a></p>
-<p>Described in <a href="extensions/storage/storage.html">IOC.Storage</a></p>
+<p>Described in <a href="extensions/storage/storage.html">Arenite.Storage</a></p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>        storage: {
           extension: <span class="hljs-literal">true</span>,
-          namespace: <span class="hljs-string">'IOC.Storage'</span>,
+          namespace: <span class="hljs-string">'Arenite.Storage'</span>,
           args: [
-            {ref: <span class="hljs-string">'ioc'</span>}
+            {ref: <span class="hljs-string">'arenite'</span>}
           ],
           init: {
             func: <span class="hljs-string">'init'</span>,

@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>ioc.di.js</title>
+  <title>arenite.di.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -40,38 +40,38 @@
                 </a>
               
                 
-                <a class="source" href="ioc.test.html">
-                  ioc.test.js
+                <a class="source" href="arenite.test.html">
+                  arenite.test.js
                 </a>
               
                 
-                <a class="source" href="ioc.async.html">
-                  ioc.async.js
+                <a class="source" href="arenite.async.html">
+                  arenite.async.js
                 </a>
               
                 
-                <a class="source" href="ioc.core.html">
-                  ioc.core.js
+                <a class="source" href="arenite.core.html">
+                  arenite.core.js
                 </a>
               
                 
-                <a class="source" href="ioc.di.html">
-                  ioc.di.js
+                <a class="source" href="arenite.di.html">
+                  arenite.di.js
                 </a>
               
                 
-                <a class="source" href="ioc.loader.html">
-                  ioc.loader.js
+                <a class="source" href="arenite.loader.html">
+                  arenite.loader.js
                 </a>
               
                 
-                <a class="source" href="ioc.object.html">
-                  ioc.object.js
+                <a class="source" href="arenite.object.html">
+                  arenite.object.js
                 </a>
               
                 
-                <a class="source" href="ioc.url.html">
-                  ioc.url.js
+                <a class="source" href="arenite.url.html">
+                  arenite.url.js
                 </a>
               
             </div>
@@ -83,7 +83,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>ioc.di.js</h1>
+                  <h1>arenite.di.js</h1>
               </div>
           </li>
         
@@ -98,9 +98,9 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global IOC:true*/</span>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Arenite:true*/</span>
 <span class="hljs-comment">/*jshint evil:true*/</span>
-IOC.DI = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(ioc)</span> </span>{
+Arenite.DI = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(arenite)</span> </span>{
 
   <span class="hljs-keyword">var</span> registry = {};
   <span class="hljs-keyword">var</span> factories = {};
@@ -128,7 +128,7 @@ IOC.DI = <span class="hljs-function"><span class="hljs-keyword">function</span> 
   };
 
   <span class="hljs-keyword">var</span> _execFunction = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(instance, func, args)</span> </span>{
-    <span class="hljs-keyword">var</span> resolvedFunc = (<span class="hljs-keyword">typeof</span> func === <span class="hljs-string">'function'</span> ? func : ioc.object.get(_getInstance(instance), func));
+    <span class="hljs-keyword">var</span> resolvedFunc = (<span class="hljs-keyword">typeof</span> func === <span class="hljs-string">'function'</span> ? func : arenite.object.get(_getInstance(instance), func));
     <span class="hljs-keyword">if</span> (resolvedFunc) {
       <span class="hljs-keyword">var</span> resolvedArgs = _resolveArgs(args || []);
       <span class="hljs-keyword">if</span> (resolvedArgs) {
@@ -166,11 +166,11 @@ IOC.DI = <span class="hljs-function"><span class="hljs-keyword">function</span> 
       <span class="hljs-keyword">return</span>;
     }
 
-    <span class="hljs-keyword">var</span> instanceKeys = ioc.object.keys(instances);
+    <span class="hljs-keyword">var</span> instanceKeys = arenite.object.keys(instances);
     <span class="hljs-keyword">var</span> unresolved = {};
 
     instanceKeys.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(instance)</span> </span>{
-      <span class="hljs-keyword">var</span> func = ioc.object.get(<span class="hljs-built_in">window</span>, instances[instance].namespace);
+      <span class="hljs-keyword">var</span> func = arenite.object.get(<span class="hljs-built_in">window</span>, instances[instance].namespace);
       <span class="hljs-keyword">if</span> (func) {
         <span class="hljs-keyword">var</span> args = _resolveArgs(instances[instance].args || []);
         <span class="hljs-keyword">if</span> (args) {
@@ -178,7 +178,7 @@ IOC.DI = <span class="hljs-function"><span class="hljs-keyword">function</span> 
           <span class="hljs-keyword">var</span> actualInstance = instances[instance].factory ? func : func.apply(func, args);
           _addInstance(instance, actualInstance, instances[instance].factory, instances[instance].args || []);
           <span class="hljs-keyword">if</span> (instances[instance].extension) {
-            ioc = ioc.object.extend(ioc, actualInstance);
+            arenite = arenite.object.extend(arenite, actualInstance);
           }
         } <span class="hljs-keyword">else</span> {
           unresolved[instance] = instances[instance];
@@ -188,8 +188,8 @@ IOC.DI = <span class="hljs-function"><span class="hljs-keyword">function</span> 
       }
     });
 
-    <span class="hljs-keyword">var</span> unresolvedKeys = ioc.object.keys(unresolved);
-    <span class="hljs-keyword">if</span> (unresolvedKeys.length !== ioc.object.keys(instances).length &amp;&amp; unresolvedKeys.length &gt; <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">var</span> unresolvedKeys = arenite.object.keys(unresolved);
+    <span class="hljs-keyword">if</span> (unresolvedKeys.length !== arenite.object.keys(instances).length &amp;&amp; unresolvedKeys.length &gt; <span class="hljs-number">0</span>) {
       _wire(unresolved);
     } <span class="hljs-keyword">else</span> {
       <span class="hljs-keyword">if</span> (unresolvedKeys.length !== <span class="hljs-number">0</span>) {
@@ -199,7 +199,7 @@ IOC.DI = <span class="hljs-function"><span class="hljs-keyword">function</span> 
   };
 
   <span class="hljs-keyword">var</span> _init = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(instances)</span> </span>{
-    ioc.object.keys(instances).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(instance)</span> </span>{
+    arenite.object.keys(instances).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(instance)</span> </span>{
       <span class="hljs-keyword">if</span> (instances[instance].init) {
         _execFunction(instance, instances[instance].init.func, instances[instance].init.args);
       }
@@ -226,37 +226,37 @@ IOC.DI = <span class="hljs-function"><span class="hljs-keyword">function</span> 
   };
 
   <span class="hljs-keyword">var</span> _loadContext = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-    <span class="hljs-keyword">if</span> (ioc.config.context) {
+    <span class="hljs-keyword">if</span> (arenite.config.context) {
       <span class="hljs-built_in">window</span>.console.log(<span class="hljs-string">'wire instances'</span>);
-      _wire(ioc.config.context.instances);
+      _wire(arenite.config.context.instances);
       <span class="hljs-built_in">window</span>.console.log(<span class="hljs-string">'init instances'</span>);
-      _init(ioc.config.context.instances);
+      _init(arenite.config.context.instances);
       <span class="hljs-built_in">window</span>.console.log(<span class="hljs-string">'start instances'</span>);
-      _start(ioc.config.context.start);
+      _start(arenite.config.context.start);
     }
   };
 
   <span class="hljs-keyword">var</span> _loadAsyncDependencies = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(dependencies)</span> </span>{
-    <span class="hljs-keyword">var</span> latch = ioc.async.latch(dependencies.async ? dependencies.async.length : <span class="hljs-number">0</span>, _loadContext, <span class="hljs-string">'dependencies'</span>);
+    <span class="hljs-keyword">var</span> latch = arenite.async.latch(dependencies.async ? dependencies.async.length : <span class="hljs-number">0</span>, _loadContext, <span class="hljs-string">'dependencies'</span>);
     dependencies.async.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(dep)</span> </span>{
-      ioc.loader.loadScript(dep, latch.countDown);
+      arenite.loader.loadScript(dep, latch.countDown);
     });
   };
 
   <span class="hljs-keyword">var</span> _loadSyncDependencies = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-    <span class="hljs-keyword">if</span> (!ioc.config.context || !ioc.config.context.dependencies) {
+    <span class="hljs-keyword">if</span> (!arenite.config.context || !arenite.config.context.dependencies) {
       <span class="hljs-keyword">return</span> _loadContext();
     }
 
     <span class="hljs-keyword">var</span> dependencies;
-    <span class="hljs-keyword">if</span> (!ioc.config.context.dependencies[ioc.config.mode]) {
+    <span class="hljs-keyword">if</span> (!arenite.config.context.dependencies[arenite.config.mode]) {
       dependencies = {sync: [], async: []};
     } <span class="hljs-keyword">else</span> {
-      dependencies = ioc.config.context.dependencies[ioc.config.mode];
+      dependencies = arenite.config.context.dependencies[arenite.config.mode];
     }
 
-    <span class="hljs-keyword">var</span> seqLatch = ioc.async.seqLatch(dependencies.sync || [], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(url)</span> </span>{
-      ioc.loader.loadScript(url, seqLatch.next);
+    <span class="hljs-keyword">var</span> seqLatch = arenite.async.seqLatch(dependencies.sync || [], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(url)</span> </span>{
+      arenite.loader.loadScript(url, seqLatch.next);
     }, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
       _loadAsyncDependencies(dependencies);
     });
@@ -268,20 +268,20 @@ IOC.DI = <span class="hljs-function"><span class="hljs-keyword">function</span> 
     <span class="hljs-keyword">var</span> unloadedImports = [];
 
     <span class="hljs-keyword">while</span> (imp) {
-      <span class="hljs-keyword">if</span> (!ioc.object.get(<span class="hljs-built_in">window</span>, imp.namespace)) {
+      <span class="hljs-keyword">if</span> (!arenite.object.get(<span class="hljs-built_in">window</span>, imp.namespace)) {
         unloadedImports.push(imp);
       } <span class="hljs-keyword">else</span> {
-        ioc.config = ioc.object.extend(ioc.config, ioc.object.get(<span class="hljs-built_in">window</span>, imp.namespace)());
+        arenite.config = arenite.object.extend(arenite.config, arenite.object.get(<span class="hljs-built_in">window</span>, imp.namespace)());
       }
       imp = imports.pop();
     }
 
     <span class="hljs-keyword">if</span> (unloadedImports.length !== <span class="hljs-number">0</span>) {
-      <span class="hljs-keyword">var</span> latch = ioc.async.latch(unloadedImports.length, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">var</span> latch = arenite.async.latch(unloadedImports.length, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
         _mergeImports(unloadedImports);
       }, <span class="hljs-string">'imports'</span>);
       unloadedImports.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(subImp)</span> </span>{
-        ioc.loader.loadScript(subImp.url, latch.countDown);
+        arenite.loader.loadScript(subImp.url, latch.countDown);
       });
     } <span class="hljs-keyword">else</span> {
       _loadSyncDependencies();
@@ -289,23 +289,23 @@ IOC.DI = <span class="hljs-function"><span class="hljs-keyword">function</span> 
   };
 
   <span class="hljs-keyword">var</span> _loadConfig = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(config)</span> </span>{
-    _addInstance(<span class="hljs-string">'ioc'</span>, ioc);
-    ioc.config = config;
-    ioc.config.mode = ioc.url.query().env || <span class="hljs-string">'default'</span>;
-    <span class="hljs-built_in">window</span>.console.log(<span class="hljs-string">'IOC: Starting in mode'</span>, ioc.config.mode);
-    <span class="hljs-keyword">if</span> (config.exposeIoc) {
-      <span class="hljs-built_in">window</span>.ioc = ioc;
+    _addInstance(<span class="hljs-string">'arenite'</span>, arenite);
+    arenite.config = config;
+    arenite.config.mode = arenite.url.query().env || <span class="hljs-string">'default'</span>;
+    <span class="hljs-built_in">window</span>.console.log(<span class="hljs-string">'Arenite: Starting in mode'</span>, arenite.config.mode);
+    <span class="hljs-keyword">if</span> (config.expose) {
+      <span class="hljs-built_in">window</span>.arenite = arenite;
     }
 
-    <span class="hljs-keyword">if</span> (ioc.config.imports) {
-      _mergeImports(<span class="hljs-built_in">JSON</span>.parse(<span class="hljs-built_in">JSON</span>.stringify(ioc.config.imports)));
+    <span class="hljs-keyword">if</span> (arenite.config.imports) {
+      _mergeImports(<span class="hljs-built_in">JSON</span>.parse(<span class="hljs-built_in">JSON</span>.stringify(arenite.config.imports)));
     } <span class="hljs-keyword">else</span> {
       _loadSyncDependencies();
     }
   };
 
   <span class="hljs-keyword">var</span> _processAnnotations = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(text)</span> </span>{
-    <span class="hljs-keyword">var</span> regex = <span class="hljs-regexp">/@ioc-instance\s+["']([^"']+)["']\s*(.*);\s*(@ioc-init\s+["']([^"']+)["']\s*(.*);)*\s*(@ioc-start\s+["']([^"']+)["']\s*(.*);)*\s*\*\/\s*([\w.]+)/g</span>;
+    <span class="hljs-keyword">var</span> regex = <span class="hljs-regexp">/@arenite-instance\s+["']([^"']+)["']\s*(.*);\s*(@arenite-init\s+["']([^"']+)["']\s*(.*);)*\s*(@arenite-start\s+["']([^"']+)["']\s*(.*);)*\s*\*\/\s*([\w.]+)/g</span>;
     <span class="hljs-keyword">var</span> match;
     <span class="hljs-keyword">while</span> ((match = regex.exec(text))) {
       _processAnnotation(match);
@@ -331,8 +331,8 @@ IOC.DI = <span class="hljs-function"><span class="hljs-keyword">function</span> 
     <span class="hljs-keyword">if</span> (!instanceName) {
       <span class="hljs-keyword">return</span>;
     }
-    <span class="hljs-keyword">if</span> (!ioc.config.context) {
-      ioc.config.context = {instances: {}};
+    <span class="hljs-keyword">if</span> (!arenite.config.context) {
+      arenite.config.context = {instances: {}};
     }</pre></div></div>
             
         </li>
@@ -348,9 +348,9 @@ IOC.DI = <span class="hljs-function"><span class="hljs-keyword">function</span> 
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    ioc.config.context.instances[instanceName] = {namespace: namespace};
+            <div class="content"><div class='highlight'><pre>    arenite.config.context.instances[instanceName] = {namespace: namespace};
     <span class="hljs-keyword">if</span> (match[<span class="hljs-number">2</span>]) {
-      ioc.config.context.instances[instanceName].args = _processArgAnnotation(match[<span class="hljs-number">2</span>]);
+      arenite.config.context.instances[instanceName].args = _processArgAnnotation(match[<span class="hljs-number">2</span>]);
     }</pre></div></div>
             
         </li>
@@ -367,9 +367,9 @@ IOC.DI = <span class="hljs-function"><span class="hljs-keyword">function</span> 
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (match[<span class="hljs-number">4</span>]) {
-      ioc.config.context.instances[instanceName].init = {func: match[<span class="hljs-number">4</span>]};
+      arenite.config.context.instances[instanceName].init = {func: match[<span class="hljs-number">4</span>]};
       <span class="hljs-keyword">if</span> (match[<span class="hljs-number">5</span>]) {
-        ioc.config.context.instances[instanceName].init.args = _processArgAnnotation(match[<span class="hljs-number">5</span>]);
+        arenite.config.context.instances[instanceName].init.args = _processArgAnnotation(match[<span class="hljs-number">5</span>]);
       }
     }</pre></div></div>
             
@@ -391,10 +391,10 @@ IOC.DI = <span class="hljs-function"><span class="hljs-keyword">function</span> 
       <span class="hljs-keyword">if</span> (match[<span class="hljs-number">8</span>]) {
         start.args = _processArgAnnotation(match[<span class="hljs-number">8</span>]);
       }
-      <span class="hljs-keyword">if</span> (!ioc.config.context.start) {
-        ioc.config.context.start = [];
+      <span class="hljs-keyword">if</span> (!arenite.config.context.start) {
+        arenite.config.context.start = [];
       }
-      ioc.config.context.start.push(start);
+      arenite.config.context.start.push(start);
     }
   };
 

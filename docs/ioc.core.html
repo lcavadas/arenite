@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>ioc.core.js</title>
+  <title>arenite.core.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -40,38 +40,38 @@
                 </a>
               
                 
-                <a class="source" href="ioc.test.html">
-                  ioc.test.js
+                <a class="source" href="arenite.test.html">
+                  arenite.test.js
                 </a>
               
                 
-                <a class="source" href="ioc.async.html">
-                  ioc.async.js
+                <a class="source" href="arenite.async.html">
+                  arenite.async.js
                 </a>
               
                 
-                <a class="source" href="ioc.core.html">
-                  ioc.core.js
+                <a class="source" href="arenite.core.html">
+                  arenite.core.js
                 </a>
               
                 
-                <a class="source" href="ioc.di.html">
-                  ioc.di.js
+                <a class="source" href="arenite.di.html">
+                  arenite.di.js
                 </a>
               
                 
-                <a class="source" href="ioc.loader.html">
-                  ioc.loader.js
+                <a class="source" href="arenite.loader.html">
+                  arenite.loader.js
                 </a>
               
                 
-                <a class="source" href="ioc.object.html">
-                  ioc.object.js
+                <a class="source" href="arenite.object.html">
+                  arenite.object.js
                 </a>
               
                 
-                <a class="source" href="ioc.url.html">
-                  ioc.url.js
+                <a class="source" href="arenite.url.html">
+                  arenite.url.js
                 </a>
               
             </div>
@@ -83,7 +83,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>ioc.core.js</h1>
+                  <h1>arenite.core.js</h1>
               </div>
           </li>
         
@@ -98,7 +98,7 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* global IOC:true */</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* global Arenite:true */</span></pre></div></div>
             
         </li>
         
@@ -109,9 +109,9 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>IOC is an implementation of the Sandbox and Module patterns. It was designed to,
+              <p>Arenite is an implementation of the Sandbox and Module patterns. It was designed to,
 unlike most of the existing module libraries, not affect your code making it dependant on the module library itself.</p>
-<p>Base of the ioc sandbox object. Creates the base services in the ioc sandbox object.</p>
+<p>Base of the arenite sandbox object. Creates the base services in the arenite sandbox object.</p>
 <p>Using the Namespace and MVP (or MVC) patterns is strongly recommended but not mandatory.</p>
 <p>You can create further extensions to the sandbox by providing new services or overriding already imported ones.</p>
 <p>There are a few extensions included in this repository and you can read more about them <a href="extensions.html">here</a>.</p>
@@ -122,7 +122,7 @@ by Stoyan Stefanov from O’Reilly Media which discusses these patterns in detai
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>IOC = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(config)</span> </span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre>Arenite = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(config)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -133,12 +133,12 @@ by Stoyan Stefanov from O’Reilly Media which discusses these patterns in detai
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <h3 id="ioc-object">IOC.Object</h3>
-<p>Instance of the Sandbox is started with the <a href="ioc.object.html">IOC.Object</a> module witch gives us access to the <code>extend</code> function used.</p>
+              <h3 id="arenite-object">Arenite.Object</h3>
+<p>Instance of the Sandbox is started with the <a href="arenite.object.html">Arenite.Object</a> module witch gives us access to the <code>extend</code> function used.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> ioc = <span class="hljs-keyword">new</span> IOC.Object(ioc);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> arenite = <span class="hljs-keyword">new</span> Arenite.Object(arenite);</pre></div></div>
             
         </li>
         
@@ -149,12 +149,12 @@ by Stoyan Stefanov from O’Reilly Media which discusses these patterns in detai
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <h3 id="ioc-async">IOC.Async</h3>
-<p>Extend the instance with the <a href="ioc.async.html">IOC.Async</a> extension providing the asynchronous tools (Latch Pattern) used by the Loader extension.</p>
+              <h3 id="arenite-async">Arenite.Async</h3>
+<p>Extend the instance with the <a href="arenite.async.html">Arenite.Async</a> extension providing the asynchronous tools (Latch Pattern) used by the Loader extension.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  ioc = ioc.object.extend(ioc, <span class="hljs-keyword">new</span> IOC.Async());</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  arenite = arenite.object.extend(arenite, <span class="hljs-keyword">new</span> Arenite.Async());</pre></div></div>
             
         </li>
         
@@ -165,12 +165,12 @@ by Stoyan Stefanov from O’Reilly Media which discusses these patterns in detai
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <h3 id="ioc-url">IOC.Url</h3>
-<p>Extend the instance with the <a href="ioc.url.html">IOC.Url</a> extension which provides functions for analysis of query parameters.</p>
+              <h3 id="arenite-url">Arenite.Url</h3>
+<p>Extend the instance with the <a href="arenite.url.html">Arenite.Url</a> extension which provides functions for analysis of query parameters.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  ioc = ioc.object.extend(ioc, <span class="hljs-keyword">new</span> IOC.Url());</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  arenite = arenite.object.extend(arenite, <span class="hljs-keyword">new</span> Arenite.Url());</pre></div></div>
             
         </li>
         
@@ -181,13 +181,13 @@ by Stoyan Stefanov from O’Reilly Media which discusses these patterns in detai
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <h3 id="ioc-di">IOC.DI</h3>
-<p>Extend the instance with the <a href="ioc.di.html">IOC.DI</a> extension which provides
+              <h3 id="arenite-di">Arenite.DI</h3>
+<p>Extend the instance with the <a href="arenite.di.html">Arenite.DI</a> extension which provides
 the injector functionality.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  ioc = ioc.object.extend(ioc, <span class="hljs-keyword">new</span> IOC.DI(ioc));</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  arenite = arenite.object.extend(arenite, <span class="hljs-keyword">new</span> Arenite.DI(arenite));</pre></div></div>
             
         </li>
         
@@ -198,13 +198,13 @@ the injector functionality.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <h3 id="ioc-loader">IOC.Loader</h3>
-<p>Extend the instance with the <a href="ioc.loader.html">IOC.Loader</a> extension which provides
+              <h3 id="arenite-loader">Arenite.Loader</h3>
+<p>Extend the instance with the <a href="arenite.loader.html">Arenite.Loader</a> extension which provides
 the script and resource loading functionality to the sandbox.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  ioc = ioc.object.extend(ioc, <span class="hljs-keyword">new</span> IOC.Loader(ioc));</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  arenite = arenite.object.extend(arenite, <span class="hljs-keyword">new</span> Arenite.Loader(arenite));</pre></div></div>
             
         </li>
         
@@ -219,7 +219,7 @@ the script and resource loading functionality to the sandbox.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  ioc.di.loadConfig(config);
+            <div class="content"><div class='highlight'><pre>  arenite.di.loadConfig(config);
 };</pre></div></div>
             
         </li>

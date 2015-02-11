@@ -40,38 +40,38 @@
                 </a>
               
                 
-                <a class="source" href="ioc.test.html">
-                  ioc.test.js
+                <a class="source" href="arenite.test.html">
+                  arenite.test.js
                 </a>
               
                 
-                <a class="source" href="ioc.async.html">
-                  ioc.async.js
+                <a class="source" href="arenite.async.html">
+                  arenite.async.js
                 </a>
               
                 
-                <a class="source" href="ioc.core.html">
-                  ioc.core.js
+                <a class="source" href="arenite.core.html">
+                  arenite.core.js
                 </a>
               
                 
-                <a class="source" href="ioc.di.html">
-                  ioc.di.js
+                <a class="source" href="arenite.di.html">
+                  arenite.di.js
                 </a>
               
                 
-                <a class="source" href="ioc.loader.html">
-                  ioc.loader.js
+                <a class="source" href="arenite.loader.html">
+                  arenite.loader.js
                 </a>
               
                 
-                <a class="source" href="ioc.object.html">
-                  ioc.object.js
+                <a class="source" href="arenite.object.html">
+                  arenite.object.js
                 </a>
               
                 
-                <a class="source" href="ioc.url.html">
-                  ioc.url.js
+                <a class="source" href="arenite.url.html">
+                  arenite.url.js
                 </a>
               
             </div>
@@ -98,14 +98,14 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* global IOC:true, doT:true */</span>
-IOC.Templates = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(ioc)</span> </span>{
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* global Arenite:true, doT:true */</span>
+Arenite.Templates = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(arenite)</span> </span>{
   <span class="hljs-keyword">var</span> _templates = {};
 
   <span class="hljs-keyword">return</span> {
     template: {
       add: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(url, callback)</span> </span>{
-        ioc.loader.loadResource(url, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(template)</span> </span>{
+        arenite.loader.loadResource(url, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(template)</span> </span>{
 
           <span class="hljs-keyword">var</span> _$templateContainer = $(<span class="hljs-string">'&lt;div&gt;&lt;/div&gt;'</span>);
           $(<span class="hljs-built_in">document</span>.body).append(_$templateContainer);

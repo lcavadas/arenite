@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>ioc.loader.js</title>
+  <title>arenite.loader.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -40,38 +40,38 @@
                 </a>
               
                 
-                <a class="source" href="ioc.test.html">
-                  ioc.test.js
+                <a class="source" href="arenite.test.html">
+                  arenite.test.js
                 </a>
               
                 
-                <a class="source" href="ioc.async.html">
-                  ioc.async.js
+                <a class="source" href="arenite.async.html">
+                  arenite.async.js
                 </a>
               
                 
-                <a class="source" href="ioc.core.html">
-                  ioc.core.js
+                <a class="source" href="arenite.core.html">
+                  arenite.core.js
                 </a>
               
                 
-                <a class="source" href="ioc.di.html">
-                  ioc.di.js
+                <a class="source" href="arenite.di.html">
+                  arenite.di.js
                 </a>
               
                 
-                <a class="source" href="ioc.loader.html">
-                  ioc.loader.js
+                <a class="source" href="arenite.loader.html">
+                  arenite.loader.js
                 </a>
               
                 
-                <a class="source" href="ioc.object.html">
-                  ioc.object.js
+                <a class="source" href="arenite.object.html">
+                  arenite.object.js
                 </a>
               
                 
-                <a class="source" href="ioc.url.html">
-                  ioc.url.js
+                <a class="source" href="arenite.url.html">
+                  arenite.url.js
                 </a>
               
             </div>
@@ -83,7 +83,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>ioc.loader.js</h1>
+                  <h1>arenite.loader.js</h1>
               </div>
           </li>
         
@@ -98,9 +98,9 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global IOC:true*/</span>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Arenite:true*/</span>
 <span class="hljs-comment">/*jshint evil:true*/</span>
-IOC.Loader = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(ioc)</span> </span>{
+Arenite.Loader = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(arenite)</span> </span>{
 
   <span class="hljs-keyword">var</span> _loadResource = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(url, callback, error)</span> </span>{
     <span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> <span class="hljs-built_in">window</span>.XMLHttpRequest();
@@ -133,7 +133,7 @@ IOC.Loader = <span class="hljs-function"><span class="hljs-keyword">function</sp
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      ioc.di.processAnnotations(req.responseText);
+            <div class="content"><div class='highlight'><pre>      arenite.di.processAnnotations(req.responseText);
       <span class="hljs-keyword">var</span> file_tag = <span class="hljs-string">'\n//@ sourceURL='</span> + <span class="hljs-built_in">window</span>.location.origin + <span class="hljs-string">'/'</span> + url + <span class="hljs-string">'\n//# sourceURL='</span> + <span class="hljs-built_in">window</span>.location.origin + <span class="hljs-string">'/'</span> + url;
       <span class="hljs-built_in">eval</span>(req.responseText + file_tag);
       callback();

@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>ioc.test.js</title>
+  <title>arenite.test.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -40,38 +40,38 @@
                 </a>
               
                 
-                <a class="source" href="ioc.test.html">
-                  ioc.test.js
+                <a class="source" href="arenite.test.html">
+                  arenite.test.js
                 </a>
               
                 
-                <a class="source" href="ioc.async.html">
-                  ioc.async.js
+                <a class="source" href="arenite.async.html">
+                  arenite.async.js
                 </a>
               
                 
-                <a class="source" href="ioc.core.html">
-                  ioc.core.js
+                <a class="source" href="arenite.core.html">
+                  arenite.core.js
                 </a>
               
                 
-                <a class="source" href="ioc.di.html">
-                  ioc.di.js
+                <a class="source" href="arenite.di.html">
+                  arenite.di.js
                 </a>
               
                 
-                <a class="source" href="ioc.loader.html">
-                  ioc.loader.js
+                <a class="source" href="arenite.loader.html">
+                  arenite.loader.js
                 </a>
               
                 
-                <a class="source" href="ioc.object.html">
-                  ioc.object.js
+                <a class="source" href="arenite.object.html">
+                  arenite.object.js
                 </a>
               
                 
-                <a class="source" href="ioc.url.html">
-                  ioc.url.js
+                <a class="source" href="arenite.url.html">
+                  arenite.url.js
                 </a>
               
             </div>
@@ -83,7 +83,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>ioc.test.js</h1>
+                  <h1>arenite.test.js</h1>
               </div>
           </li>
         
@@ -98,12 +98,12 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global IOC:true, jasmine:true, blanket:true */</span>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Arenite:true, jasmine:true, blanket:true */</span>
 <span class="hljs-comment">/*jshint evil:true*/</span>
-IOC.Test = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(ioc)</span> </span>{
+Arenite.Test = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(arenite)</span> </span>{
 
   <span class="hljs-keyword">var</span> _coverageLoad = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(url, cb)</span> </span>{
-    ioc.loader.loadResource(url, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(resp)</span> </span>{
+    arenite.loader.loadResource(url, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(resp)</span> </span>{
       <span class="hljs-built_in">window</span>.blanket.instrument({inputFile: resp.responseText, inputFileName: url}, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(instrumented)</span> </span>{
         <span class="hljs-built_in">window</span>.console.log(<span class="hljs-string">'Instrumenting:'</span>, url);</pre></div></div>
             
@@ -130,9 +130,9 @@ IOC.Test = <span class="hljs-function"><span class="hljs-keyword">function</span
   };
 
   <span class="hljs-keyword">var</span> _reloadWithCoverage = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(syncResources, asyncResources, cb)</span> </span>{
-    <span class="hljs-keyword">var</span> latch = ioc.async.latch(asyncResources.length, cb, <span class="hljs-string">'async test dependencies retrieve'</span>);
+    <span class="hljs-keyword">var</span> latch = arenite.async.latch(asyncResources.length, cb, <span class="hljs-string">'async test dependencies retrieve'</span>);
 
-    <span class="hljs-keyword">var</span> seqLatch = ioc.async.seqLatch(syncResources, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(url)</span> </span>{
+    <span class="hljs-keyword">var</span> seqLatch = arenite.async.seqLatch(syncResources, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(url)</span> </span>{
       _coverageLoad(url, seqLatch.next);
     }, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
       asyncResources.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(url)</span> </span>{
@@ -143,9 +143,9 @@ IOC.Test = <span class="hljs-function"><span class="hljs-keyword">function</span
   };
 
   <span class="hljs-keyword">var</span> _run = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(syncResources, asyncResources, testFiles)</span> </span>{
-    <span class="hljs-keyword">var</span> latch = ioc.async.latch(testFiles.length, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> latch = arenite.async.latch(testFiles.length, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
       <span class="hljs-keyword">try</span> {
-        <span class="hljs-built_in">window</span>.console.log(<span class="hljs-string">'IOC: Starting the tests'</span>);
+        <span class="hljs-built_in">window</span>.console.log(<span class="hljs-string">'Arenite: Starting the tests'</span>);
         <span class="hljs-keyword">var</span> env = jasmine.getEnv();
         blanket.setupCoverage();
 
@@ -167,7 +167,7 @@ IOC.Test = <span class="hljs-function"><span class="hljs-keyword">function</span
 
     _reloadWithCoverage(syncResources, asyncResources, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
       testFiles.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(testFile)</span> </span>{
-        ioc.loader.loadScript(testFile, latch.countDown);
+        arenite.loader.loadScript(testFile, latch.countDown);
       });
     });
   };

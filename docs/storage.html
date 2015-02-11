@@ -40,38 +40,38 @@
                 </a>
               
                 
-                <a class="source" href="ioc.test.html">
-                  ioc.test.js
+                <a class="source" href="arenite.test.html">
+                  arenite.test.js
                 </a>
               
                 
-                <a class="source" href="ioc.async.html">
-                  ioc.async.js
+                <a class="source" href="arenite.async.html">
+                  arenite.async.js
                 </a>
               
                 
-                <a class="source" href="ioc.core.html">
-                  ioc.core.js
+                <a class="source" href="arenite.core.html">
+                  arenite.core.js
                 </a>
               
                 
-                <a class="source" href="ioc.di.html">
-                  ioc.di.js
+                <a class="source" href="arenite.di.html">
+                  arenite.di.js
                 </a>
               
                 
-                <a class="source" href="ioc.loader.html">
-                  ioc.loader.js
+                <a class="source" href="arenite.loader.html">
+                  arenite.loader.js
                 </a>
               
                 
-                <a class="source" href="ioc.object.html">
-                  ioc.object.js
+                <a class="source" href="arenite.object.html">
+                  arenite.object.js
                 </a>
               
                 
-                <a class="source" href="ioc.url.html">
-                  ioc.url.js
+                <a class="source" href="arenite.url.html">
+                  arenite.url.js
                 </a>
               
             </div>
@@ -98,8 +98,8 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global IOC:true*/</span>
-IOC.Storage = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(ioc)</span> </span>{
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Arenite:true*/</span>
+Arenite.Storage = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(arenite)</span> </span>{
 
   <span class="hljs-keyword">var</span> _local;
   <span class="hljs-keyword">var</span> _session;
@@ -108,7 +108,7 @@ IOC.Storage = <span class="hljs-function"><span class="hljs-keyword">function</s
   <span class="hljs-keyword">var</span> _init = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(cb)</span> </span>{
     <span class="hljs-keyword">if</span> (_local !== <span class="hljs-literal">null</span>) {
 
-      <span class="hljs-keyword">var</span> latch = ioc.async.latch(<span class="hljs-number">3</span>, cb, <span class="hljs-string">'storage'</span>);
+      <span class="hljs-keyword">var</span> latch = arenite.async.latch(<span class="hljs-number">3</span>, cb, <span class="hljs-string">'storage'</span>);
 
       <span class="hljs-built_in">window</span>.storage(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(sjs)</span> </span>{
         _local = sjs;
