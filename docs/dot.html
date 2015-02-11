@@ -20,6 +20,21 @@
             <div id="jump_page">
               
                 
+                <a class="source" href="async.html">
+                  async.js
+                </a>
+              
+                
+                <a class="source" href="core.html">
+                  core.js
+                </a>
+              
+                
+                <a class="source" href="di.html">
+                  di.js
+                </a>
+              
+                
                 <a class="source" href="bus.html">
                   bus.js
                 </a>
@@ -40,38 +55,23 @@
                 </a>
               
                 
-                <a class="source" href="arenite.test.html">
-                  arenite.test.js
+                <a class="source" href="test.html">
+                  test.js
                 </a>
               
                 
-                <a class="source" href="arenite.async.html">
-                  arenite.async.js
+                <a class="source" href="loader.html">
+                  loader.js
                 </a>
               
                 
-                <a class="source" href="arenite.core.html">
-                  arenite.core.js
+                <a class="source" href="object.html">
+                  object.js
                 </a>
               
                 
-                <a class="source" href="arenite.di.html">
-                  arenite.di.js
-                </a>
-              
-                
-                <a class="source" href="arenite.loader.html">
-                  arenite.loader.js
-                </a>
-              
-                
-                <a class="source" href="arenite.object.html">
-                  arenite.object.js
-                </a>
-              
-                
-                <a class="source" href="arenite.url.html">
-                  arenite.url.js
+                <a class="source" href="url.html">
+                  url.js
                 </a>
               
             </div>
@@ -98,34 +98,43 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* global Arenite:true, doT:true */</span>
-Arenite.Templates = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(arenite)</span> </span>{
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* global Arenite:true */</span>
+Arenite.Templates = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(arenite, doT)</span> </span>{
   <span class="hljs-keyword">var</span> _templates = {};
 
-  <span class="hljs-keyword">return</span> {
-    template: {
-      add: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(url, callback)</span> </span>{
-        arenite.loader.loadResource(url, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(template)</span> </span>{
-
-          <span class="hljs-keyword">var</span> _$templateContainer = $(<span class="hljs-string">'&lt;div&gt;&lt;/div&gt;'</span>);
-          $(<span class="hljs-built_in">document</span>.body).append(_$templateContainer);
-
-          _$templateContainer.html(template);
-          _$templateContainer.find(<span class="hljs-string">'script[type="text/x-dot-template"]'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(idx, template)</span> </span>{
-            _templates[template.id] = doT.template($(template).html());
-          });
-
-          <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> callback === <span class="hljs-string">'function'</span>) {
-            callback();
-          }
-
-          _$templateContainer.remove();
-        });
-      },
-      apply: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name, arg)</span> </span>{
-        <span class="hljs-keyword">return</span> _templates[name](arg);
+  <span class="hljs-keyword">var</span> _add = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(urls, callback)</span> </span>{
+    <span class="hljs-keyword">var</span> templateLatch = arenite.async.latch(urls.length, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> callback === <span class="hljs-string">'function'</span>) {
+        callback();
       }
+    }, <span class="hljs-string">"template loader"</span>);
+    urls.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(url)</span> </span>{
+      arenite.loader.loadResource(url, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(template)</span> </span>{
+        <span class="hljs-keyword">var</span> templateContainer = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'div'</span>);
+        templateContainer.innerHTML = template.responseText;
+        <span class="hljs-built_in">document</span>.body.appendChild(templateContainer);
+
+        <span class="hljs-keyword">var</span> scriptTags = templateContainer.getElementsByTagName(<span class="hljs-string">'script'</span>);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; scriptTags.length; i++) {
+          _templates[scriptTags[i].id] = doT.template(scriptTags[i].innerHTML);
+        }
+
+        <span class="hljs-built_in">document</span>.body.removeChild(templateContainer);
+        templateLatch.countDown();
+      });
+    });
+  };
+
+  <span class="hljs-keyword">var</span> _apply = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name, arg)</span> </span>{
+    <span class="hljs-keyword">if</span> (!_templates[name]) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-string">"Unable to find template '"</span> + name + <span class="hljs-string">"'"</span>;
     }
+    <span class="hljs-keyword">return</span> _templates[name](arg);
+  };
+
+  <span class="hljs-keyword">return</span> {
+    add: _add,
+    apply: _apply
   };
 };</pre></div></div>
             

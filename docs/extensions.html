@@ -20,6 +20,21 @@
             <div id="jump_page">
               
                 
+                <a class="source" href="async.html">
+                  async.js
+                </a>
+              
+                
+                <a class="source" href="core.html">
+                  core.js
+                </a>
+              
+                
+                <a class="source" href="di.html">
+                  di.js
+                </a>
+              
+                
                 <a class="source" href="bus.html">
                   bus.js
                 </a>
@@ -40,38 +55,23 @@
                 </a>
               
                 
-                <a class="source" href="arenite.test.html">
-                  arenite.test.js
+                <a class="source" href="test.html">
+                  test.js
                 </a>
               
                 
-                <a class="source" href="arenite.async.html">
-                  arenite.async.js
+                <a class="source" href="loader.html">
+                  loader.js
                 </a>
               
                 
-                <a class="source" href="arenite.core.html">
-                  arenite.core.js
+                <a class="source" href="object.html">
+                  object.js
                 </a>
               
                 
-                <a class="source" href="arenite.di.html">
-                  arenite.di.js
-                </a>
-              
-                
-                <a class="source" href="arenite.loader.html">
-                  arenite.loader.js
-                </a>
-              
-                
-                <a class="source" href="arenite.object.html">
-                  arenite.object.js
-                </a>
-              
-                
-                <a class="source" href="arenite.url.html">
-                  arenite.url.js
+                <a class="source" href="url.html">
+                  url.js
                 </a>
               
             </div>
@@ -119,21 +119,38 @@ The sandbox object is auto-registered as <code>arenite</code> and can be referen
     context: {
       dependencies: {
         <span class="hljs-keyword">default</span>: {
+          sync: [
+            {
+              url: <span class="hljs-string">'//code.jquery.com/jquery-2.1.3.min.js'</span>,
+              <span class="hljs-built_in">window</span>: <span class="hljs-string">'jQuery'</span>,
+              instance: <span class="hljs-string">'jquery'</span>
+            }
+          ],
           async: [
-            <span class="hljs-string">'/di/js/extensions/bus/bus.js'</span>,
-            <span class="hljs-string">'/di/js/extensions/template/dot.js'</span>,
-            <span class="hljs-string">'/di/js/extensions/storage/storage.js'</span>
+            {
+              url: <span class="hljs-string">'lib/doT.min.js'</span>,
+              <span class="hljs-built_in">window</span>: <span class="hljs-string">'doT'</span>,
+              instance: <span class="hljs-string">'doT'</span>
+            },
+            {
+              url: <span class="hljs-string">'lib/storage.min.js'</span>,
+              <span class="hljs-built_in">window</span>: <span class="hljs-string">'storage'</span>,
+              instance: <span class="hljs-string">'storagejs'</span>
+            },
+            <span class="hljs-string">'/arenite/js/extensions/bus/bus.js'</span>,
+            <span class="hljs-string">'/arenite/js/extensions/template/dot.js'</span>,
+            <span class="hljs-string">'/arenite/js/extensions/storage/storage.js'</span>
           ]
         }
       },
       start: [
         {
-          instance: <span class="hljs-string">'bus'</span>,
+          instance: <span class="hljs-string">'arenite'</span>,
           func: <span class="hljs-string">'bus.publish'</span>,
           args: [{<span class="hljs-string">'value'</span>: <span class="hljs-string">'application-started'</span>}]
         }
       ],
-      instances: {</pre></div></div>
+      extensions: {</pre></div></div>
             
         </li>
         
@@ -151,7 +168,6 @@ The sandbox object is auto-registered as <code>arenite</code> and can be referen
             </div>
             
             <div class="content"><div class='highlight'><pre>        bus: {
-          extension: <span class="hljs-literal">true</span>,
           namespace: <span class="hljs-string">'Arenite.Bus'</span>
         },</pre></div></div>
             
@@ -171,9 +187,18 @@ The sandbox object is auto-registered as <code>arenite</code> and can be referen
             </div>
             
             <div class="content"><div class='highlight'><pre>        templates: {
-          extension: <span class="hljs-literal">true</span>,
           namespace: <span class="hljs-string">'Arenite.Templates'</span>,
-          args: [{ref: <span class="hljs-string">'arenite'</span>}]
+          args: [
+            {ref: <span class="hljs-string">'arenite'</span>},
+            {ref: <span class="hljs-string">'doT'</span>}
+          ],
+          init: {
+            wait: <span class="hljs-literal">true</span>,
+            func: <span class="hljs-string">'add'</span>,
+            args: [{
+              value: [<span class="hljs-string">'templates/templates.html'</span>]
+            }]
+          }
         },</pre></div></div>
             
         </li>
@@ -192,10 +217,10 @@ The sandbox object is auto-registered as <code>arenite</code> and can be referen
             </div>
             
             <div class="content"><div class='highlight'><pre>        storage: {
-          extension: <span class="hljs-literal">true</span>,
           namespace: <span class="hljs-string">'Arenite.Storage'</span>,
           args: [
-            {ref: <span class="hljs-string">'arenite'</span>}
+            {ref: <span class="hljs-string">'arenite'</span>},
+            {ref: <span class="hljs-string">'storagejs'</span>}
           ],
           init: {
             func: <span class="hljs-string">'init'</span>,
