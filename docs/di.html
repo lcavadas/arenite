@@ -339,7 +339,11 @@ Arenite.DI = <span class="hljs-function"><span class="hljs-keyword">function</sp
       <span class="hljs-keyword">if</span> (!arenite.object.get(<span class="hljs-built_in">window</span>, imp.namespace)) {
         unloadedImports.push(imp);
       } <span class="hljs-keyword">else</span> {
-        arenite.config = arenite.object.extend(arenite.config, arenite.object.get(<span class="hljs-built_in">window</span>, imp.namespace)());
+        <span class="hljs-keyword">var</span> imported = arenite.object.get(<span class="hljs-built_in">window</span>, imp.namespace)();
+        arenite.config = arenite.object.extend(arenite.config, imported);
+        <span class="hljs-keyword">if</span> (imported.imports) {
+          imports = arenite.array.merge(imports, imported.imports);
+        }
       }
       imp = imports.pop();
     }

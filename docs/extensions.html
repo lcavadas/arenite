@@ -132,20 +132,23 @@ The sandbox object is auto-registered as <code>arenite</code> and can be referen
           sync: [
             {
               url: <span class="hljs-string">'//code.jquery.com/jquery-2.1.3.min.js'</span>,
-              <span class="hljs-built_in">window</span>: <span class="hljs-string">'jQuery'</span>,
-              instance: <span class="hljs-string">'jquery'</span>
+              instances: {
+                jquery: <span class="hljs-string">'$'</span>
+              }
             }
           ],
           async: [
             {
               url: <span class="hljs-string">'lib/doT.min.js'</span>,
-              <span class="hljs-built_in">window</span>: <span class="hljs-string">'doT'</span>,
-              instance: <span class="hljs-string">'doT'</span>
+              instances: {
+                doT: <span class="hljs-string">'doT'</span>
+              }
             },
             {
               url: <span class="hljs-string">'lib/storage.min.js'</span>,
-              <span class="hljs-built_in">window</span>: <span class="hljs-string">'storage'</span>,
-              instance: <span class="hljs-string">'storagejs'</span>
+              instances: {
+                storagejs: <span class="hljs-string">'storage'</span>
+              }
             },
             <span class="hljs-string">'/arenite/js/extensions/bus/bus.js'</span>,
             <span class="hljs-string">'/arenite/js/extensions/template/dot.js'</span>,
