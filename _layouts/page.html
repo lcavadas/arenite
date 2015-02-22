@@ -1,0 +1,18 @@
+---
+layout: default
+---
+{% if page.header_text %}
+<div class="call-out">{{ page.header_text }}</div>
+{% endif %}
+
+<article>
+
+  <header style="background-image: url('{{ site.baseurl }}/{{ page.feature-img }}')">
+    <h1 class="title">{{ page.title }}</h1>
+  </header>
+
+  <section class="post-content">
+    {{ content }}
+  </section>
+
+</article>

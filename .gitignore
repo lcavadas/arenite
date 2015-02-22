@@ -1,1 +1,3 @@
-jekyll
+*.iml
+.idea
+_site
