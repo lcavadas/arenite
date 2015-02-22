@@ -1,7 +1,7 @@
 ---
 layout: page
 title: How To&nbsp;&nbsp;&nbsp;
-permalink: usage
+permalink: /usage/
 header_text: This page is still under construnction and shows out of date information.
 ---
 
