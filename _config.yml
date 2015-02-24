@@ -58,10 +58,8 @@ paginate: 5
 paginate_path: "blog/page:num"
 
 # BUILD SETTINGS
-markdown: kramdown
-kramdown:
-  input: GFM
-highlighter: pygments
+markdown: redcarpet
+highlighter: rouge
 sass:
   sass_dir: _sass
   style: :compressed

@@ -363,7 +363,7 @@ gulp.task('min', function () {
     }, function (src) {
       src.pipe(concat('todo.min.js'))
         //So the annotation based instances work, they should be annotated with /*! */ blocks
-        .pipe(uglify({preserveComments: 'some'})) 
+        .pipe(uglify({preserveComments: 'some'}))
         .pipe(gulp.dest(build));
     });
 });
