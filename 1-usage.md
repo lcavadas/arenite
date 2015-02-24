@@ -18,7 +18,7 @@ You can use both at the same time is such is desired.
 
 ###Object
 
-You can check the complete reference for the configuration object <a href="#reference">here</a>
+You can check the complete reference for the configuration object
 
 ####Dependencies
 
