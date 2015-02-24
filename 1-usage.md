@@ -344,7 +344,7 @@ As part of Arenite, a gulp extension has also been developed that can read all t
 
 Here's an example extracted from the TodoMVC demo app. For the complete source go <a href="//github.com/lcavadas/arenite-todo">here</a>.
 
-<pre><code class="javascript">
+{% highlight javascript %}
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var arenitesrc = require('gulp-arenite-src');
@@ -369,4 +369,4 @@ gulp.task('min', function () {
         .pipe(gulp.dest(build));
     });
 });
-</code></pre>
+{% endhighlight %}
