@@ -21,8 +21,12 @@ div.highlight{
   padding: 16px;
   overflow: auto;
   font-size: 85%;
-  line-height: 1.45;
+  line-height: 1.25;
   background-color: #f7f7f7;
   border-radius: 3px;
   word-wrap: normal;
+
+  pre{
+    margin: 0;
+  }
 }
