@@ -24,20 +24,19 @@ You can check the complete reference for the configuration object
 
 The property <b>expose</b> can either be the name of the variable to be used for 
 exposing the arenite instance in the window object.
-  <pre>
-    <code class="javascript">
+
+{% highlight javascript %}
   Arenite({
     expose: 'arenite',
     ...
   });
-      </code>
-  </pre> 
+{% endhighlight %}
+
 Alternatively you can use a 
 function which should return the name to be used. If the function returns undefined
 then the arenite instance will not be exposed.
 
-<pre>
-  <code class="javascript">
+{% highlight javascript %}
 Arenite({
   expose: function(arenite){
     if (arenite.url.getUrl().env){
@@ -46,8 +45,7 @@ Arenite({
   },
   ...
 });
-    </code>
-</pre> 
+{% endhighlight %}
 
 ####Imports
 
@@ -55,8 +53,7 @@ For any non-trivial web-application you can (and should) separate your configura
 files.
 this can then be specified in your main configuration (usually in index.html).
 
-<pre>
-  <code class="javascript">
+{% highlight javascript %}
 Arenite({
   imports: [
     {
@@ -66,8 +63,7 @@ Arenite({
     ...
   ]
 });
-    </code>
-</pre>
+{% highlight javascript %}
 
 <code>namespace</code> specifies the function to run to obtain the partial configuration. <code>url</code> is an optional setting that allows Arenite to fetch the source for <code>App.Sample</code> if it is not already defined (loaded from the dependencies for example). You can nest further imports which allows you to split your configuration per components/modules of your application.
 
@@ -82,7 +78,7 @@ Note there is a <code>default</code> entry in this element and that will be the 
 You can add any other sections you'd like and trigger those alternatives by appending the query param <code>env</code>
 to the url.
 
-<pre><code class="javascript">
+{% highlight javascript %}
 Arenite({
   context: {
     dependencies: {
@@ -97,7 +93,7 @@ Arenite({
     }
   }
 });
-</code></pre>
+{% endhighlight %}
 
 Example: <code>...index.html?env=debug</code> will attempt to load scripts defined in a <code>debug</code>
 section.
@@ -109,7 +105,7 @@ scripst are loaded in parallel.
 
 The entries can be simple strings with the location of the script:
 
-<pre><code class="javascript">
+{% highlight javascript %}
 Arenite({
   context: {
     dependencies: {
@@ -123,11 +119,11 @@ Arenite({
     }
   }
 });
-</code></pre>
+{% endhighlight %}
 
 Or you can, besides specifying the script, define the dependency extracts a variables from the window and registers them in arenite as an instances:
 
-<pre><code class="javascript">
+{% highlight javascript %}
 Arenite({
   context: {
     dependencies: {
@@ -147,7 +143,7 @@ Arenite({
     }
   }
 });
-</code></pre>
+{% endhighlight %}
 
 #####Instances
 
@@ -159,7 +155,7 @@ Arenite({
 
 Here's a full configuration as used in Arenite's TodoMVC demo app. For the complete source go <a href="//github.com/lcavadas/arenite-todo">here</a>
 
-<div class="highlight"><pre><code class="language-javascript">
+{% highlight javascript %}
 {
   context: {
     dependencies: {
@@ -334,7 +330,7 @@ Here's a full configuration as used in Arenite's TodoMVC demo app. For the compl
     }
   }
 };
-</code></pre></div>
+{% endhighlight %}
 
 ###Annotation Configuration
 
