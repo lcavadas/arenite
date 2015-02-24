@@ -16,3 +16,11 @@
 // Partials
 @import 'includes/header';
 @import 'includes/footer';
+
+div.highlight{
+  background-color: black;
+  color: white;
+  padding: 1em;
+  border-radius: 1em;
+  word-wrap: normal;
+}
