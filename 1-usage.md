@@ -25,18 +25,18 @@ You can check the complete reference for the configuration object
 The property <b>expose</b> can either be the name of the variable to be used for 
 exposing the arenite instance in the window object.
 
-```js
+{% highlight javascript %}
   Arenite({
     expose: 'arenite',
     ...
   });
-```
+{% endhighlight %}
 
 Alternatively you can use a 
 function which should return the name to be used. If the function returns undefined
 then the arenite instance will not be exposed.
 
-```js
+{% highlight javascript %}
 Arenite({
   expose: function(arenite){
     if (arenite.url.getUrl().env){
@@ -45,7 +45,7 @@ Arenite({
   },
   ...
 });
-```
+{% endhighlight %}
 
 #### Imports
 
@@ -53,7 +53,7 @@ For any non-trivial web-application you can (and should) separate your configura
 files.
 this can then be specified in your main configuration (usually in index.html).
 
-```js
+{% highlight javascript %}
 Arenite({
   imports: [
     {
@@ -63,7 +63,7 @@ Arenite({
     ...
   ]
 });
-```
+{% endhighlight %}
 
 <code>namespace</code> specifies the function to run to obtain the partial configuration. <code>url</code> is an optional setting that allows Arenite to fetch the source for <code>App.Sample</code> if it is not already defined (loaded from the dependencies for example). You can nest further imports which allows you to split your configuration per components/modules of your application.
 
@@ -78,7 +78,7 @@ Note there is a <code>default</code> entry in this element and that will be the 
 You can add any other sections you'd like and trigger those alternatives by appending the query param <code>env</code>
 to the url.
 
-```js
+{% highlight javascript %}
 Arenite({
   context: {
     dependencies: {
@@ -93,7 +93,7 @@ Arenite({
     }
   }
 });
-```
+{% endhighlight %}
 
 Example: <code>...index.html?env=debug</code> will attempt to load scripts defined in a <code>debug</code>
 section.
@@ -105,7 +105,7 @@ scripst are loaded in parallel.
 
 The entries can be simple strings with the location of the script:
 
-```js
+{% highlight javascript %}
 Arenite({
   context: {
     dependencies: {
@@ -119,11 +119,11 @@ Arenite({
     }
   }
 });
-```
+{% endhighlight %}
 
 Or you can, besides specifying the script, define the dependency extracts a variables from the window and registers them in arenite as an instances:
 
-```js
+{% highlight javascript %}
 Arenite({
   context: {
     dependencies: {
@@ -143,7 +143,7 @@ Arenite({
     }
   }
 });
-```
+{% endhighlight %}
 
 ##### Instances
 
@@ -155,7 +155,7 @@ Arenite({
 
 Here's a full configuration as used in Arenite's TodoMVC demo app. For the complete source go <a href="//github.com/lcavadas/arenite-todo">here</a>
 
-```js
+{% highlight javascript %}
 App = function () {
   return {
     context: {
@@ -332,7 +332,7 @@ App = function () {
     }
   };
 };
-```
+{% endhighlight %}
 
 ### Annotation Configuration
 
@@ -342,7 +342,7 @@ As part of Arenite, a gulp extension has also been developed that can read all t
 
 Here's an example extracted from the TodoMVC demo app. For the complete source go <a href="//github.com/lcavadas/arenite-todo">here</a>.
 
-``` javascript
+{% highlight javascript %}
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var arenitesrc = require('gulp-arenite-src');
@@ -367,4 +367,4 @@ gulp.task('min', function () {
         .pipe(gulp.dest(build));
     });
 });
-```
+{% endhighlight %}
