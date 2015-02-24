@@ -342,7 +342,7 @@ App = function () {
 As part of Arenite, a gulp extension has also been developed that can read all the sources declared in an Arenite config (with imports). The extension is published on npm.js with the name <code>gulp-arenite-src</code>
 
 Here's an example extracted from the TodoMVC demo app. For the complete source go <a href="//github.com/lcavadas/arenite-todo">here</a>.
-
+ 
 ```javascript
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
