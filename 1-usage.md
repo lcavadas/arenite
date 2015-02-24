@@ -155,6 +155,7 @@ Arenite({
 
 Here's a full configuration as used in Arenite's TodoMVC demo app. For the complete source go <a href="//github.com/lcavadas/arenite-todo">here</a>
 
+
 ```js
 App = function () {
   return {
