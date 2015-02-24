@@ -63,7 +63,7 @@ Arenite({
     ...
   ]
 });
-{% highlight javascript %}
+{% endhighlight %}
 
 <code>namespace</code> specifies the function to run to obtain the partial configuration. <code>url</code> is an optional setting that allows Arenite to fetch the source for <code>App.Sample</code> if it is not already defined (loaded from the dependencies for example). You can nest further imports which allows you to split your configuration per components/modules of your application.
 
