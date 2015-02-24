@@ -159,7 +159,7 @@ Arenite({
 
 Here's a full configuration as used in Arenite's TodoMVC demo app. For the complete source go <a href="//github.com/lcavadas/arenite-todo">here</a>
 
-<pre><code class="javascript">
+<div class="highlight"><pre><code class="language-javascript">
 {
   context: {
     dependencies: {
@@ -334,7 +334,7 @@ Here's a full configuration as used in Arenite's TodoMVC demo app. For the compl
     }
   }
 };
-</code></pre>
+</code></pre></div>
 
 ###Annotation Configuration
 
