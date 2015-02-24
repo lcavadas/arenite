@@ -5,7 +5,7 @@ permalink: /usage/
 header_text: This page is still under construction.
 ---
 
-##Configuration
+## Configuration
 
 You should require only one script tag on your html since Arenite can take care of loading your javascript.
 This is advisable as there is a mechanism within Arenite to run in different flavors with different files
@@ -16,11 +16,11 @@ There are two ways to configure you instances to be registered with Arenite. You
 
 A base object is always required for at the very least declaring the dependencies.
 
-###Object Configuration
+### Object Configuration
 
 You can check the complete reference for the configuration object
 
-####Expose
+#### Expose
 
 The property <b>expose</b> can either be the name of the variable to be used for 
 exposing the arenite instance in the window object.
@@ -47,7 +47,7 @@ Arenite({
 });
 ```
 
-####Imports
+#### Imports
 
 For any non-trivial web-application you can (and should) separate your configuration into several different
 files.
@@ -67,11 +67,11 @@ Arenite({
 
 <code>namespace</code> specifies the function to run to obtain the partial configuration. <code>url</code> is an optional setting that allows Arenite to fetch the source for <code>App.Sample</code> if it is not already defined (loaded from the dependencies for example). You can nest further imports which allows you to split your configuration per components/modules of your application.
 
-####Context
+#### Context
 
 The <code>context</code> is composed of four sections, all of them optional.
 
-#####Dependencies
+##### Dependencies
 
 A minimal initial object based configuration is required to at the very least specify the resources. The <code>dependencies</code> section of the context is the configuration part where you define the script to load.
 Note there is a <code>default</code> entry in this element and that will be the files loaded by default.
@@ -145,13 +145,13 @@ Arenite({
 });
 ```
 
-#####Instances
+##### Instances
 
-#####Extensions
+##### Extensions
 
-#####Start
+##### Start
 
-####Full example
+#### Full example
 
 Here's a full configuration as used in Arenite's TodoMVC demo app. For the complete source go <a href="//github.com/lcavadas/arenite-todo">here</a>
 
@@ -334,15 +334,15 @@ App = function () {
 };
 ```
 
-###Annotation Configuration
+### Annotation Configuration
 
-##Building an app
+## Building an app
 
 As part of Arenite, a gulp extension has also been developed that can read all the sources declared in an Arenite config (with imports). The extension is published on npm.js with the name <code>gulp-arenite-src</code>
 
 Here's an example extracted from the TodoMVC demo app. For the complete source go <a href="//github.com/lcavadas/arenite-todo">here</a>.
 
-```javascript
+``` javascript
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var arenitesrc = require('gulp-arenite-src');
