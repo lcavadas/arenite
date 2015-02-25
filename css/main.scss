@@ -17,16 +17,8 @@
 @import 'includes/header';
 @import 'includes/footer';
 
-div.highlight{
-  padding: 16px;
-  overflow: auto;
-  font-size: 85%;
-  line-height: 1.25;
-  background-color: #f7f7f7;
-  border-radius: 3px;
+code.hljs {
+  background-color: #eee;
+  border-radius: 6px;
   word-wrap: normal;
-
-  pre{
-    margin: 0;
-  }
 }
