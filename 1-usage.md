@@ -39,7 +39,7 @@ then the arenite instance will not be exposed.
 ```javascript
 Arenite({
   expose: function(arenite){
-    if (arenite.url.getUrl().env){
+    if (arenite.url.getUrl().mode){
       return 'arenite' 
     }
   },
@@ -75,7 +75,7 @@ The <code>context</code> is composed of four sections, all of them optional.
 
 A minimal initial object based configuration is required to at the very least specify the resources. The <code>dependencies</code> section of the context is the configuration part where you define the script to load.
 Note there is a <code>default</code> entry in this element and that will be the files loaded by default.
-You can add any other sections you'd like and trigger those alternatives by appending the query param <code>env</code>
+You can add any other sections you'd like and trigger those alternatives by appending the query param <code>mode</code>
 to the url.
 
 ```javascript
@@ -95,7 +95,7 @@ Arenite({
 });
 ```
 
-Example: <code>...index.html?env=debug</code> will attempt to load scripts defined in a <code>debug</code>
+Example: <code>...index.html?mode=debug</code> will attempt to load scripts defined in a <code>debug</code>
 section.
 
 Each dependency configuration contains two lists,<code>sync</code> and <code>async</code> which are used to list your scripts that need to be loaded synchronously or can be loaded asynchronously respectively.
@@ -349,7 +349,7 @@ var arenitesrc = require('gulp-arenite-src');
 
 gulp.task('min', function () {
   arenitesrc({
-      env: 'dev', //Default is 'dev' anyway but left here for clarity
+      mode: 'dev', //Default is 'dev' anyway but left here for clarity
       base: 'static' //So you don't have to use the base folder directly
     },
     {
