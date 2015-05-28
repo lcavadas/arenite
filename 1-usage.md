@@ -145,6 +145,7 @@ Arenite({
 <code>url</code> URL from which to retrieve the script.
 <code>instances</code> Object with the list of variables to extract from window and register in arenite's context (the key is the instance name and the value is the variable name in the window object)
 <code>init</code> is an optional function that is executed after the script is imported and before the instance is extracted from the window object.
+
 ##### Instances
 
 ##### Extensions
