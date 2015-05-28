@@ -2,7 +2,6 @@
 layout: page
 title: How To&nbsp;&nbsp;&nbsp;
 permalink: /usage/
-header_text: This page is still under construction.
 ---
 
 ## Configuration
@@ -58,15 +57,13 @@ Arenite({
   imports: [
     {
       url: 'sample.js',
-      namespace: 'App.Sample'
-    }
+      namespace: 'App.Sample',
     ...
   ]
 });
 ```
 
 <code>namespace</code> specifies the function to run to obtain the partial configuration. <code>url</code> is an optional setting that allows Arenite to fetch the source for <code>App.Sample</code> if it is not already defined (loaded from the dependencies for example). You can nest further imports which allows you to split your configuration per components/modules of your application.
-
 #### Context
 
 The <code>context</code> is composed of four sections, all of them optional.
@@ -135,7 +132,8 @@ Arenite({
               instances:{
                 'jquery':'$'
                 ...
-              }
+              },
+              init:function(arenite){...}
             }
             ...
         ]
@@ -144,7 +142,9 @@ Arenite({
   }
 });
 ```
-
+<code>url</code> URL from which to retrieve the script.
+<code>instances</code> Object with the list of variables to extract from window and register in arenite's context (the key is the instance name and the value is the variable name in the window object)
+<code>init</code> is an optional function that is executed after the script is imported and before the instance is extracted from the window object.
 ##### Instances
 
 ##### Extensions
