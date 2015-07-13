@@ -153,10 +153,10 @@ This section declares the instances that are to be wired and registered in the a
 
 Any instance declared in this section can be accessed using <code>arenite.context.get('model')</code> where 'model' is the name of the instance to retrieve.
 
-An instance is composed of three elements: <code>namespace</code>, <code>args</code>, <code>init</code> and the optional <code>factory</code> flag.
+An instance is composed of four elements: <code>namespace</code>, <code>args</code>, <code>init</code> and the optional <code>factory</code> flag.
 
 The <code>namespace</code> is a string declaring the function to execute to create the instance.
-<code>args</code> is the list of arguments to be passed when executing the <code>namespace</code> function and <code>init</code> is the function to initialize the instance (). The flag <code>factory</code> which is false by default defines if a new instance should be returned everytime the dependency is requested.
+<code>args</code> is the list of arguments to be passed when executing the <code>namespace</code> function and <code>init</code> is the function to initialize the instance (). The flag <code>factory</code>, which is false by default, defines if a new instance should be returned everytime the dependency is requested.
 
 ```
 instances: {
@@ -182,7 +182,7 @@ instances: {
 }
 ```
 
-There are three types of <code>args</code>, <code>ref</code> which declared the dependency is a arenite registered instance with the specified name, <code>val</code> which is a raw value (string, number, array, object, etc...) and finally <code>instance</code> which is a declaration of an instance that is treated as anonymous. Anonoymous instances are used for the wiring and inherit the factory flag from its parent but are not registered in the context.
+There are three types of <code>args</code>: <code>ref</code> which declare the dependency is a arenite registered instance with the specified name, <code>val</code> which is a raw value (string, number, array, object, etc...) and finally <code>instance</code> which is a declaration of an instance that is treated as anonymous. Anonoymous instances are used for the wiring and inherit the factory flag from its parent but are not registered in the context.
 
 The anonymous instances are particularly useful if you use MVC or MVP design patterns where only the controller/presenter are registered in the context and the view can be instantiated for it but are not accessible from other controllers/presenters since they don't exist in the context. 
 
