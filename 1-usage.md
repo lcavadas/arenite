@@ -15,7 +15,7 @@ There are two ways to configure you instances to be registered with Arenite. You
 
 A base object is always required for at the very least declaring the dependencies.
 
-### Object Configuration
+### Object Configurationma
 
 You can check the complete reference for the configuration object
 
@@ -153,7 +153,7 @@ This section declares the instances that are to be wired and registered in the a
 
 Any instance declared in this section can be accessed using <code>arenite.context.get('model')</code> where 'model' is the name of the instance to retrieve.
 
-An instance is mainly composed of three elements: <code>namespace</code>, <code>args</code>, <code>init</code> and the optional <code>factory</code> flag.
+An instance is composed of three elements: <code>namespace</code>, <code>args</code>, <code>init</code> and the optional <code>factory</code> flag.
 
 The <code>namespace</code> is a string declaring the function to execute to create the instance.
 <code>args</code> is the list of arguments to be passed when executing the <code>namespace</code> function and <code>init</code> is the function to initialize the instance (). The flag <code>factory</code> which is false by default defines if a new instance should be returned everytime the dependency is requested.
