@@ -182,9 +182,9 @@ instances: {
 }
 ```
 
-There are three types of <code>args</code>: <code>ref</code> which declares the dependency is a arenite registered instance with the specified name, <code>val</code> which is a raw value (string, number, array, object, etc...) and finally <code>instance</code> which is a declaration of an instance that is treated as anonymous. Anonoymous instances are used for the wiring and inherit the factory flag from its parent but are not registered in the context.
+There are three types of <code>args</code>: <code>ref</code> which declares the dependency is a arenite registered instance with the specified name, <code>value</code> which is a raw value (string, number, array, object, etc...) and finally <code>instance</code> which is a declaration of an anonymous instance. Anonoymous instances are used in the wiring and inherit the factory flag from its parent but are not registered in the context.
 
-The anonymous instances are particularly useful if you use MVC or MVP design patterns where only the controller/presenter are registered in the context and the view can be instantiated for it but are not accessible from other controllers/presenters since they don't exist in the context. 
+The anonymous instances are particularly useful if you use MVC or MVP design patterns where only the controller/presenter are registered in the context and the view can be declared (instantiated) for it but are not accessible from other controllers/presenters since they don't exist in the context. 
 
 ##### Extensions
 
