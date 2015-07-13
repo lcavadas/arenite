@@ -15,6 +15,8 @@ There are two ways to configure you instances to be registered with Arenite. You
 
 A base object is always required for at the very least declaring the dependencies.
 
+For the dev API documentation please go  <a href="//rawgit.com/lcavadas/arenite/master/docs/core.html">here</a>.
+
 ### Object Configurationma
 
 You can check the complete reference for the configuration object
