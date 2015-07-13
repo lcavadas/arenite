@@ -258,7 +258,7 @@ start: [
 Here's a full configuration as used in Arenite's TodoMVC demo app. For the complete source go <a href="//github.com/lcavadas/arenite-todo">here</a>
 
 ```javascript
-App = function () {
+window.App = function () {
   return {
     context: {
       dependencies: {
@@ -294,10 +294,10 @@ App = function () {
                 storagejs: 'storage'
               }
             },
-            '//cdn.rawgit.com/lcavadas/arenite/0.0.15/js/extensions/bus/bus.js',
-            '//cdn.rawgit.com/lcavadas/arenite/0.0.15/js/extensions/storage/storage.js',
-            '//cdn.rawgit.com/lcavadas/arenite/0.0.15/js/extensions/template/dot.js',
-            '//cdn.rawgit.com/lcavadas/arenite/0.0.15/js/extensions/router/router.js',
+            '//cdn.rawgit.com/lcavadas/arenite/1.0.4/js/extensions/bus/bus.js',
+            '//cdn.rawgit.com/lcavadas/arenite/1.0.4/js/extensions/storage/storage.js',
+            '//cdn.rawgit.com/lcavadas/arenite/1.0.4/js/extensions/template/dot.js',
+            '//cdn.rawgit.com/lcavadas/arenite/1.0.4/js/extensions/router/router.js',
 
             'js/model.js',
             'js/list/list.js',
