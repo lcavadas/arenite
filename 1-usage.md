@@ -11,20 +11,21 @@ This is advisable as there is a mechanism within Arenite to run in different fla
 
 (ex: <b>dev</b> with all source files and <b>prod</b> with minified versions)
 
-There are two ways to configure you instances to be registered with Arenite. You can use object configuration or annotation-based configuration. You can use both at the same time is such is desired. 
+There are three ways to configure your instances to be registered with Arenite. You can use object configuration, annotation-based configuration or an AMD-style call to <code>define</code>. You can use all at the same time if such is desired.
 
 A base object is always required for at the very least declaring the dependencies.
 
-For the dev API documentation please go  <a href="//rawgit.com/lcavadas/arenite/master/docs/core.html">here</a>.
+For the dev API documentation please go  <a href="//rawgit.com/arenite/arenite/master/docs/core.html">here</a>.
 
 ### Object Configurationma
 
-You can check the complete reference for the configuration object
+The object configuration relies on a simple object to define the desired properties for arenite to act upon.
 
 #### Expose
 
-The property <b>expose</b> can either be the name of the variable to be used for 
-exposing the arenite instance in the window object.
+The property <b>expose</b> is name of the variable to be used for exposing the arenite instance in the window object. This property can also be a function to determine if the variable should be exposed.
+
+Expose Arenite as a window variable <code>arenite</code>:
 
 ```javascript
   Arenite({
@@ -33,15 +34,13 @@ exposing the arenite instance in the window object.
   });
 ```
 
-Alternatively you can use a 
-function which should return the name to be used. If the function returns undefined
-then the arenite instance will not be exposed.
+Expose Arenite as a window variable <code>arenite</code> only if a mode has been specified:
 
 ```javascript
 Arenite({
   expose: function(arenite){
     if (arenite.url.getUrl().mode){
-      return 'arenite' 
+      return 'arenite'
     }
   },
   ...
@@ -51,21 +50,34 @@ Arenite({
 #### Imports
 
 For any non-trivial web-application you can (and should) separate your configuration into several different
-files.
-this can then be specified in your main configuration (usually in index.html).
+components/files, known to arenite as <code>modules</code>. These can then be specified in your main configuration (usually in index.html).
 
 ```javascript
 Arenite({
-  imports: [
-    {
-      url: 'sample.js',
-      namespace: 'App.Sample',
+  imports: {
+    "templates": {    
+      "module": "doT",
+      "vendor": "arenite/template-extension",
+      "version": "1.0.2"
     ...
-  ]
+  }
 });
 ```
+The key used in imports is used to uniquely identify each imported modules.
 
-<code>namespace</code> specifies the function to run to obtain the partial configuration. <code>url</code> is an optional setting that allows Arenite to fetch the source for <code>App.Sample</code> if it is not already defined (loaded from the dependencies for example). You can nest further imports which allows you to split your configuration per components/modules of your application.
+<code>module</code> is the name/path of the module.
+If no vendor is defined, it will use the name as a relative path. If the vendor is defined it will import the module from the repository (defaults to <code>//cdn.rawgit.com/{vendor}/{version}/{module}/</code> and can be overriden by defining the config property <code>repo</code>)
+This name must correspond to the relative path of the configuration for the module.
+
+<code>vendor</code> <b>optional</b> specifies the vendor of the module you are about to import.
+
+<code>version</code> <b>optional</b> Defines which version of the module to fetch.
+
+<b>Note 1</b>: Any arenite and non-arenite properties defined are merged and exposed in the property <code>config</code> of arenite.
+
+<b>Note 2</b>: Local modules are packaged into the minified files by the gulp plugin while non-local are not.
+
+<b>Note 3</b> Any module must have a <code>module.json</code> file with the configuration for that module.
 
 #### Context
 
@@ -259,216 +271,148 @@ start: [
 
 Here's a full configuration as used in Arenite's TodoMVC demo app. For the complete source go <a href="//github.com/lcavadas/arenite-todo">here</a>
 
-```javascript
-window.App = function () {
-  return {
-    context: {
-      dependencies: {
-        default: {
-          async: [
-            {
-              url: 'build/todo.min.js',
-              instances: {
-                jquery: '$',
-                doT: 'doT',
-                storagejs: 'storage'
-              }
+```json
+{
+  "imports": {
+    "templates": {
+      "vendor": "arenite/template-extension",
+      "module": "doT",
+      "version": "1.0.2"
+    },
+    "storage": {
+      "vendor": "arenite/storage-module",
+      "module": "storagejs",
+      "version": "1.0.2"
+    },
+    "router": {
+      "vendor": "arenite/router-extension",
+      "module": "",
+      "version": "1.0.5"
+    }
+  },
+  "context": {
+    "dependencies": {
+      "default": {
+        "async": [
+          {
+            "url": "build/todo.min.js",
+            "instances": {
+              "jquery": "$"
             }
-          ]
-        },
-        dev: {
-          async: [
-            {
-              url: '//cdn.rawgit.com/lcavadas/jquery/2.1.3/dist/jquery.min.js',
-              instances: {
-                jquery: '$'
-              }
-            },
-            {
-              url: '//cdn.rawgit.com/lcavadas/doT/1.0.1/doT.js',
-              instances: {
-                doT: 'doT'
-              }
-            },
-            {
-              url: '//cdn.rawgit.com/lcavadas/Storage.js/4c0b9016c5536d55bf55e21bf4e83d29f3483750/build/storage.js',
-              instances: {
-                storagejs: 'storage'
-              }
-            },
-            '//cdn.rawgit.com/lcavadas/arenite/1.0.4/js/extensions/bus/bus.js',
-            '//cdn.rawgit.com/lcavadas/arenite/1.0.4/js/extensions/storage/storage.js',
-            '//cdn.rawgit.com/lcavadas/arenite/1.0.4/js/extensions/template/dot.js',
-            '//cdn.rawgit.com/lcavadas/arenite/1.0.4/js/extensions/router/router.js',
-
-            'js/model.js',
-            'js/list/list.js',
-            'js/list/listView.js',
-            'js/list/toolbarView.js',
-            'js/todo/todo.js',
-            'js/todo/todoView.js'
-          ]
-        }
-      },
-      extensions: {
-        bus: {
-          namespace: 'Arenite.Bus'
-        },
-        templates: {
-          namespace: 'Arenite.Templates',
-          args: [
-            {ref: 'arenite'},
-            {ref: 'doT'}
-          ],
-          init: {
-            wait: true,
-            func: 'add',
-            args: [{
-              value: ['templates/template.html']
-            }]
           }
-        },
-        storage: {
-          namespace: 'Arenite.Storage',
-          args: [
-            {ref: 'arenite'},
-            {ref: 'storagejs'}
-          ],
-          init: 'init'
-        },
-        router: {
-          namespace: 'Arenite.Router',
-          args: [{ref: 'arenite'}],
-          init: {
-            func: 'init',
-            args: [
-              {
-                value: {
-                  '/': [{
-                    instance: 'arenite',
-                    func: 'bus.publish',
-                    args: [
-                      {value: 'filter-change'},
-                      {value: 'all'}
-                    ]
-                  }],
-                  '/active': [{
-                    instance: 'arenite',
-                    func: 'bus.publish',
-                    args: [
-                      {value: 'filter-change'},
-                      {value: 'active'}
-                    ]
-                  }],
-                  '/completed': [{
-                    instance: 'arenite',
-                    func: 'bus.publish',
-                    args: [
-                      {value: 'filter-change'},
-                      {value: 'completed'}
-                    ]
-                  }]
-                }
-              },
-              {value: true}]
-          }
-        }
+        ]
       },
-      start: [
-        {
-          instance: 'model',
-          func: 'load'
-        }
-      ],
-      instances: {
-        model: {
-          namespace: 'App.Model',
-          args: [
-            {ref: 'arenite'}
-          ]
-        },
-        list: {
-          namespace: 'App.List',
-          init:'init',
-          args: [
-            {ref: 'arenite'},
-            {ref: 'model'},
+      "dev": {
+        "async": [
+          "//code.jquery.com/jquery-2.1.3.min.js",
+          "js/model.js",
+          "js/list/list.js",
+          "js/list/listView.js",
+          "js/list/toolbarView.js",
+          "js/todo/todo.js",
+          "js/todo/todoView.js"
+        ]
+      }
+    },
+    "start": [
+      {
+        "instance": "model",
+        "func": "load"
+      }
+    ],
+    "extensions": {
+      "templates": {
+        "init": {
+          "wait": true,
+          "func": "add",
+          "args": [
             {
-              instance: {
-                namespace: 'App.ListView',
-                args: [
-                  {ref: 'arenite'},
-                  {ref: 'jquery'}
-                ],
-                init: 'init'
-              }
-            },
-            {
-              instance: {
-                namespace: 'App.ToolbarView',
-                args: [
-                  {ref: 'arenite'},
-                  {ref: 'jquery'}
-                ],
-                init: 'init'
-              }
-            }
-          ]
-        },
-        todo: {
-          factory: true,
-          namespace: 'App.Todo',
-          args: [
-            {ref: 'arenite'},
-            {ref: 'model'},
-            {
-              instance: {
-                namespace: 'App.TodoView',
-                args: [
-                  {ref: 'arenite'},
-                  {ref: 'jquery'}
-                ]
-              }
+              "value": [
+                "build/template.html"
+              ]
             }
           ]
         }
       }
-    }
-  };
-};
-```
-
-### Annotation Configuration
-
-## Building an app
-
-As part of Arenite, a gulp extension has also been developed that can read all the sources declared in an Arenite config (with imports). The extension is published on npm.js with the name <code>gulp-arenite-src</code>
-
-Here's an example extracted from the TodoMVC demo app. For the complete source go <a href="//github.com/lcavadas/arenite-todo">here</a>.
-
-```javascript
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var arenitesrc = require('gulp-arenite-src');
-
-gulp.task('min', function () {
-  arenitesrc({
-      mode: 'dev', //Default is 'dev' anyway but left here for clarity
-      base: 'static' //So you don't have to use the base folder directly
     },
-    {
-      export: 'arenite',
-      imports: [
-        {
-          url: 'static/js/app.js',//The path defined here needs to be relative to here
-          namespace: 'App'
-        }
-      ]
-    }, function (src) {
-      src.pipe(concat('todo.min.js'))
-        //So the annotation based instances work, they should be annotated with /*! */ blocks
-        .pipe(uglify({preserveComments: 'some'}))
-        .pipe(gulp.dest(build));
-    });
-});
+    "instances": {
+      "model": {
+        "namespace": "App.Model",
+        "args": [
+          {
+            "ref": "arenite"
+          },
+          {
+            "ref": "storage"
+          }
+        ]
+      },
+      "list": {
+        "namespace": "App.List",
+        "init": "init",
+        "args": [
+          {
+            "ref": "arenite"
+          },
+          {
+            "ref": "model"
+          },
+          {
+            "instance": {
+              "namespace": "App.ListView",
+              "args": [
+                {
+                  "ref": "arenite"
+                },
+                {
+                  "ref": "jquery"
+                }
+              ],
+              "init": "init"
+            }
+          },
+          {
+            "instance": {
+              "namespace": "App.ToolbarView",
+              "args": [
+                {
+                  "ref": "arenite"
+                },
+                {
+                  "ref": "jquery"
+                }
+              ],
+              "init": "init"
+            }
+          }
+        ]
+      },
+      "todo": {
+        "factory": true,
+        "namespace": "App.Todo",
+        "args": [
+          {
+            "ref": "arenite"
+          },
+          {
+            "ref": "model"
+          },
+          {
+            "instance": {
+              "namespace": "App.TodoView",
+              "args": [
+                {
+                  "ref": "arenite"
+                },
+                {
+                  "ref": "jquery"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}
 ```
