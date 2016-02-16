@@ -17,7 +17,7 @@ A base object is always required for at the very least declaring the dependencie
 
 For the dev API documentation please go  <a href="//rawgit.com/arenite/arenite/master/docs/core.html">here</a>.
 
-### Object Configurationma
+### Object Configuration
 
 The object configuration relies on a simple object to define the desired properties for arenite to act upon.
 
@@ -172,7 +172,7 @@ An instance is composed of four elements: <code>namespace</code>, <code>args</co
 The <code>namespace</code> is a string declaring the function to execute to create the instance.
 <code>args</code> is the list of arguments to be passed when executing the <code>namespace</code> function and <code>init</code> is the function to initialize the instance (). The flag <code>factory</code>, which is false by default, defines if a new instance should be returned everytime the dependency is requested.
 
-```
+```javascript
 instances: {
 ...
  todo: {
@@ -198,7 +198,7 @@ instances: {
 
 There are four types of <code>args</code>: <code>ref</code> which declares the dependency is a arenite registered instance with the specified name, <code>value</code> which is a raw value (string, number, array, object, etc...),  <code>instance</code> which is a declaration of an anonymous instance and <code>exec</code> which is the declaration of an execution (see the Start section of this document for more details).
 
-Anonoymous instances are used in the wiring and inherit the factory flag from its parent but are not registered in the context. The anonymous instances are particularly useful if you use MVC or MVP design patterns where only the controller/presenter are registered in the context and the view can be declared (instantiated) for it but are not accessible from other controllers/presenters since they don't exist in the context. 
+Anonoymous instances are used in the wiring and inherit the factory flag from its parent but are not registered in the context. The anonymous instances are particularly useful if you use MVC or MVP design patterns where only the controller/presenter are registered in the context and the view can be declared (instantiated) for it but are not accessible from other controllers/presenters since they don't exist in the context.
 
 ##### Extensions
 
@@ -207,7 +207,7 @@ You register your extensions in this section. There are a few extensions defined
 An extension is pretty much a regular instance that instead of being added to the context registry is used to extend the arenite object itself.
 
 
-```
+```javascript
 ...
  extensions: {
    templates: {
@@ -239,7 +239,7 @@ Having <code>wait: true</code> in an extension declaration will cause arenite to
 
 The <code>start</code> section as the name implies is used to start the application after everything has been wired and initialized. It is a collection of function executions that is ran sequencially.
 
-```
+```javascript
 ...
 start: [
   {
@@ -252,13 +252,13 @@ start: [
 
 The structure of the function executions is <code>instance</code> declaring the instance to use (the name), <code>func</code> the name of the function to be used and <code>args</code> the list of arguments. Starts can also be declared by using  <code>func</code> as an actual Function that receives the arguments declared in the <code>args</code>.
 
-```
+```javascript
 ...
 start: [
   {
     func: function (model) {
       model.load();
-    }, 
+    },
     args:[
       {ref:'model'}
     ]
