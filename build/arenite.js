@@ -273,6 +273,7 @@ Arenite.Context = function (arenite) {
   var registry = {};
   var factories = {};
   var factory_id = 1;
+  var constructingFactories = [];
 
   var _addInstance = function (name, instance, factory) {
     if (factory) {
@@ -288,13 +289,21 @@ Arenite.Context = function (arenite) {
 
   var _getInstance = function (name) {
     if (factories.hasOwnProperty(name)) {
+      if (constructingFactories.indexOf(name) !== -1) {
+        throw 'Circular factory dependency: ' + constructingFactories.concat(name).join(' -> ');
+      }
+      constructingFactories.push(name);
       var tempId = '__factory_instance_' + name + '__' + factory_id++;
       var tempContext = {};
       tempContext[tempId] = arenite.object.extend(factories[name], {factory: false});
-      arenite.di.wire(tempContext);
-      var instance = registry[tempId];
-      _removeInstance(tempId);
-      return instance;
+      try {
+        arenite.di.wire(tempContext);
+        var instance = registry[tempId];
+        _removeInstance(tempId);
+        return instance;
+      } finally {
+        constructingFactories.pop();
+      }
     } else {
       return registry[name];
     }
@@ -407,6 +416,64 @@ Arenite.DI = function (arenite) {
     }
   };
 
+  var _getUnresolvedReferences = function (instances, instance) {
+    var references = [];
+    (instances[instance].args || []).forEach(function (arg) {
+      if (typeof arg.ref !== 'undefined' && instances.hasOwnProperty(arg.ref)) {
+        references.push(arg.ref);
+      }
+    });
+    return references;
+  };
+
+  var _getCircularDependencies = function (instances) {
+    var circularDependencies = [];
+    var visited = {};
+    var visiting = {};
+    var visit = function (instance, path) {
+      if (visiting[instance]) {
+        circularDependencies.push(path.slice(path.indexOf(instance)).concat(instance));
+        return;
+      }
+      if (visited[instance]) {
+        return;
+      }
+      visiting[instance] = true;
+      _getUnresolvedReferences(instances, instance).forEach(function (reference) {
+        visit(reference, path.concat(instance));
+      });
+      delete visiting[instance];
+      visited[instance] = true;
+    };
+    arenite.object.keys(instances).forEach(function (instance) {
+      visit(instance, []);
+    });
+    return circularDependencies;
+  };
+
+  var _unresolvedInstancesError = function (instances) {
+    var unresolved = arenite.object.keys(instances);
+    var missingReferences = [];
+    unresolved.forEach(function (instance) {
+      (instances[instance].args || []).forEach(function (arg) {
+        if (typeof arg.ref !== 'undefined' && !instances.hasOwnProperty(arg.ref)) {
+          missingReferences.push(instance + ' -> ' + arg.ref);
+        }
+      });
+    });
+    var error = 'Unable to resolve the following instances: ' + unresolved.join(', ');
+    if (missingReferences.length) {
+      error += '. Missing references: ' + missingReferences.join(', ');
+    }
+    var circularDependencies = _getCircularDependencies(instances);
+    if (circularDependencies.length) {
+      error += '. Circular dependencies: ' + circularDependencies.map(function (dependency) {
+        return dependency.join(' -> ');
+      }).join(', ');
+    }
+    return error;
+  };
+
   var _wire = function (instances, type) {
     if (!instances) {
       return;
@@ -445,7 +512,7 @@ Arenite.DI = function (arenite) {
       _wire(unresolved);
     } else {
       if (unresolvedKeys.length !== 0) {
-        throw 'Make sure you don\'t have circular dependencies, Unable to resolve the following instances: ' + unresolvedKeys.join(", ");
+        throw _unresolvedInstancesError(unresolved);
       }
     }
   };
